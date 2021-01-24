@@ -49,10 +49,10 @@ namespace engine {
 	void Application::Start()
 	{
 		float vertices[] = {
-		 0.5f,  0.5f, 0.0f,  
-		 0.5f, -0.5f, 0.0f,  
-		-0.5f, -0.5f, 0.0f,  
-		-0.5f,  0.5f, 0.0f   
+			 0.5f,  0.5f, 0.0f,  1.0f,  1.0f,  
+			 0.5f, -0.5f, 0.0f,  1.0f,  0.0f,
+			-0.5f, -0.5f, 0.0f,  0.0f,  0.0f,
+			-0.5f,  0.5f, 0.0f,  0.0f,  1.0f
 		};
 
 		unsigned int indices[] = {  
@@ -60,9 +60,13 @@ namespace engine {
 			1, 2, 3    
 		};
 
+		/* Texture */
+		Texture* texture = new Texture("res/textures/wood.jpeg");
+
 		/* Vertex Buffer */
 		std::vector<int> layout;
 		layout.push_back(3);
+		layout.push_back(2);
 
 		VertexBuffer* vbo = new VertexBuffer(vertices, sizeof(vertices), layout);
 
@@ -71,7 +75,6 @@ namespace engine {
 
 		/* Shader */
 		Shader* shader = Shader::CompileFromFile("res/shaders/standard.shader");
-		shader->SetFloat3("color", glm::vec3(0.0f, 1.0f, 0.0f));
 
 		/* Vertex Array */
 		VertexArray* vao = new VertexArray();
@@ -84,7 +87,7 @@ namespace engine {
 		while (!glfwWindowShouldClose(m_window))
 		{
 			Renderer::Clear();
-			Renderer::DrawMesh(mesh);
+			Renderer::DrawMesh(mesh, texture);
 
 			glfwSwapBuffers(m_window);
 			glfwPollEvents();

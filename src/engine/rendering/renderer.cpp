@@ -16,6 +16,12 @@ namespace engine {
 		glDrawElements(GL_TRIANGLES, mesh->GetVAO()->GetIBO()->GetCount(), GL_UNSIGNED_INT, nullptr);
 	}
 
+	void Renderer::DrawMesh(Mesh* mesh, Texture* texture)
+	{
+		texture->Bind();
+		DrawMesh(mesh);
+	}
+
 	void Renderer::Clear()
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

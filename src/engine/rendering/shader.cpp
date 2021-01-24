@@ -94,8 +94,6 @@ namespace engine {
 		return CompileFromString(vertex.str().c_str(), fragment.str().c_str());
 	}
 
-	
-
 	void Shader::Use()
 	{
 		glUseProgram(m_id);

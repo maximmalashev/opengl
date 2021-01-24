@@ -7,6 +7,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="deps\stb_image\stb_image.cpp" />
     <ClCompile Include="src\engine\common\application.cpp" />
     <ClCompile Include="src\engine\rendering\buffers\ibo.cpp" />
     <ClCompile Include="src\engine\rendering\buffers\vao.cpp" />
@@ -14,9 +15,11 @@
     <ClCompile Include="src\engine\rendering\mesh.cpp" />
     <ClCompile Include="src\engine\rendering\renderer.cpp" />
     <ClCompile Include="src\engine\rendering\shader.cpp" />
+    <ClCompile Include="src\engine\rendering\texture.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="deps\stb_image\stb_image.h" />
     <ClInclude Include="src\engine\common\application.h" />
     <ClInclude Include="src\engine\rendering\buffers\ibo.h" />
     <ClInclude Include="src\engine\rendering\buffers\vao.h" />
@@ -24,6 +27,7 @@
     <ClInclude Include="src\engine\rendering\mesh.h" />
     <ClInclude Include="src\engine\rendering\renderer.h" />
     <ClInclude Include="src\engine\rendering\shader.h" />
+    <ClInclude Include="src\engine\rendering\texture.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\standard.shader" />
@@ -56,7 +60,7 @@
     <OutDir>$(SolutionDir)out\</OutDir>
     <IntDir>$(SolutionDir)out\int\</IntDir>
     <TargetName>opengl-test</TargetName>
-    <IncludePath>$(SolutionDir)deps\glew\include;$(SolutionDir)deps\glm\;$(SolutionDir)deps\glfw\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)deps\glew\include;$(SolutionDir)deps\glm\;$(SolutionDir)deps\stb_image;$(SolutionDir)deps\glfw\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)deps\glew\lib\Release\Win32;$(SolutionDir)deps\glfw\lib;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
