@@ -1,6 +1,7 @@
 #include "renderer.h"
 
 #include <GL/glew.h>
+#include <glm/gtc/type_ptr.hpp>
 
 namespace engine {
 	void Renderer::SetBackgroundColor(float red, float green, float blue)
@@ -20,6 +21,18 @@ namespace engine {
 	{
 		texture->Bind();
 		DrawMesh(mesh);
+	}
+
+	void Renderer::DrawEntity(Entity* entity, Texture* texture)
+	{
+		texture->Bind();
+
+		entity->GetMesh()->GetShader()->Use();
+		entity->GetMesh()->GetVAO()->Bind();
+
+		entity->GetMesh()->GetShader()->SetMatrix4x4("transformation", entity->GetTransform()->GetTransformationMatrix());
+
+		glDrawElements(GL_TRIANGLES, entity->GetMesh()->GetVAO()->GetIBO()->GetCount(), GL_UNSIGNED_INT, nullptr);
 	}
 
 	void Renderer::Clear()

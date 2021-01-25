@@ -16,6 +16,7 @@
     <ClCompile Include="src\engine\rendering\renderer.cpp" />
     <ClCompile Include="src\engine\rendering\shader.cpp" />
     <ClCompile Include="src\engine\rendering\texture.cpp" />
+    <ClCompile Include="src\engine\scene\entity.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -28,6 +29,7 @@
     <ClInclude Include="src\engine\rendering\renderer.h" />
     <ClInclude Include="src\engine\rendering\shader.h" />
     <ClInclude Include="src\engine\rendering\texture.h" />
+    <ClInclude Include="src\engine\scene\entity.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\standard.shader" />

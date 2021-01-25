@@ -37,10 +37,7 @@ namespace engine {
 		glBindTexture(GL_TEXTURE_2D, m_id);
 	}
 
-	Texture::~Texture()
-	{
-
-	}
+	Texture::~Texture() { }
 }
 
 

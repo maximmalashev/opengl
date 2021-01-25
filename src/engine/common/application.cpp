@@ -84,10 +84,16 @@ namespace engine {
 
 		Mesh* mesh = new Mesh(vao, shader);
 
+		Entity* entity = new Entity();
+		entity->SetMesh(mesh);
+		entity->GetTransform()->position.x = .5f;
+		entity->GetTransform()->scale.x = .5f;
+		entity->GetTransform()->scale.y = .5f;
+
 		while (!glfwWindowShouldClose(m_window))
 		{
 			Renderer::Clear();
-			Renderer::DrawMesh(mesh, texture);
+			Renderer::DrawEntity(entity, texture);
 
 			glfwSwapBuffers(m_window);
 			glfwPollEvents();
