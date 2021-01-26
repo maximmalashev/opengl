@@ -1,7 +1,10 @@
 #pragma once
-#include "mesh.h"
+
+#include <glm/glm.hpp>
+
 #include "texture.h"
-#include "../scene/entity.h"
+#include "buffers/vao.h"
+#include "shader.h"
 
 namespace engine {
 
@@ -9,11 +12,14 @@ namespace engine {
 	{
 	public:
 		static void SetBackgroundColor(float red, float green, float blue);
-		static void DrawMesh(Mesh* mesh);
-		static void DrawMesh(Mesh* mesh, Texture* texture);
-		static void DrawEntity(Entity* entity, Texture* texture);
 		static void Clear();
-	private:
-	};
 
+		static inline void SetProjection(glm::mat4x4 projection) { m_projection = projection; }
+		static inline void SetView(glm::mat4x4 view) { m_view = view; }
+
+		static void Draw(VertexArray* vao, Shader* shader, Texture* texture, glm::mat4x4 model);
+	private:
+		static glm::mat4x4 m_projection;
+		static glm::mat4x4 m_view;
+	};
 }

@@ -3,12 +3,12 @@
 #include <iostream>
 #include <vector>
 #include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 
 #include "../rendering/buffers/vao.h"
 #include "../rendering/buffers/vbo.h"
 #include "../rendering/buffers/ibo.h"
 #include "../rendering/shader.h"
-#include "../rendering/mesh.h"
 #include "../rendering/renderer.h"
 
 namespace engine {
@@ -80,20 +80,28 @@ namespace engine {
 		VertexArray* vao = new VertexArray();
 		vao->AttachBuffers(*vbo, *ibo);
 
+		/* Transformation matrix */
+		glm::mat4x4 transform = glm::mat4x4(1.0f);
+		transform = glm::translate(transform, glm::vec3(300.0f, 300.0f, 0.0f));
+		transform = glm::scale(transform, glm::vec3(100.0f, 100.0f, 1.0f));
+
+		/* Projection matrix */
+		Renderer::SetProjection(glm::ortho(0.0f, 720.0f, 0.0f, 720.0f, 0.0f, 100.0f));
+
+		/* View matrix */
+		glm::mat4x4 view = glm::mat4x4(1.0f);
+		view = glm::translate(view, glm::vec3(0.0f, 0.0f, 0.0f));
+		view = glm::scale(view, glm::vec3(1.0f, 1.0f, 1.0f));
+
+		Renderer::SetView(view);
+
+		/* Background colour */
 		Renderer::SetBackgroundColor(0.0f, 0.0f, 0.0f);
-
-		Mesh* mesh = new Mesh(vao, shader);
-
-		Entity* entity = new Entity();
-		entity->SetMesh(mesh);
-		entity->GetTransform()->position.x = .5f;
-		entity->GetTransform()->scale.x = .5f;
-		entity->GetTransform()->scale.y = .5f;
-
+		
 		while (!glfwWindowShouldClose(m_window))
 		{
 			Renderer::Clear();
-			Renderer::DrawEntity(entity, texture);
+			Renderer::Draw(vao, shader, texture, transform);
 
 			glfwSwapBuffers(m_window);
 			glfwPollEvents();
